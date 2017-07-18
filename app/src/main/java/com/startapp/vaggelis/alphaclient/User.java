@@ -203,13 +203,13 @@ public class User extends BaseActivity implements OnMapReadyCallback {
 
                         @Override
                         public void fail(VolleyError error) {
-                            Log.d(this.getClass().getName(), error.getMessage());
+                            Log.d(toString(), "Network error: "+error.getMessage());
                         }
                     };
                     try{
                         api.getPosts(loginHandle);
                     }catch (JSONException e){
-                        Log.d(toString(),"Exception in GetPosts");//TODO cetnralize exception handling
+                        Log.d(toString(),"Exception in GetPosts");//TODO centralize exception handling
                     }
 
                 }

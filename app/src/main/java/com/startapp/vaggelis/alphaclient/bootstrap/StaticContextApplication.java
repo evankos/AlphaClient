@@ -9,6 +9,8 @@ import com.startapp.vaggelis.alphaclient.services.API;
 import com.startapp.vaggelis.alphaclient.listeners.MyLocationListener;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -25,6 +27,7 @@ public class StaticContextApplication extends Application{
     public LocationManager locationManager;
     public MyLocationListener myLocationListener;
     private Activity currentActivity = null;
+    public Map<String,Object> settings = null;
 
     public Activity getCurrentActivity(){
         return currentActivity;
@@ -46,6 +49,13 @@ public class StaticContextApplication extends Application{
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         api = new API((StaticContextApplication) StaticContextApplication.context);
+
+        setUpSettings();
+    }
+
+    private void setUpSettings(){
+        settings = new HashMap<>();
+        settings.put("range", getProperty("default_range"));
     }
 
     public static Context getAppContext() {

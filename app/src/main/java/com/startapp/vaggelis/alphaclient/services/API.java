@@ -76,7 +76,21 @@ public class API{
     public void getPosts(NetworkCallable networkCallable) throws JSONException{
         String url = ApiBase.get("posts");
         NetworkListener networkListener = new NetworkListener<>(networkCallable);
+        Map<String,String> map = new HashMap<>();
+        map.put("lat",String.valueOf(context.myLocationListener.getLat()));
+        map.put("lon",String.valueOf(context.myLocationListener.getLong()));
+        map.put("range",String.valueOf(context.settings.get("range")));
+        url+=urlEncodeMap(map);
+
         requests.getJsonArray(url, null, networkListener,token);
+    }
+
+    private String urlEncodeMap(Map<String,String> map){
+        String url = "?";
+        for (Map.Entry<String,String> entry: map.entrySet()){
+            url+=String.format("%s=%s&",URLEncoder.encode(entry.getKey()),entry.getValue());
+        }
+        return url.substring(0, url.length() - 1);
     }
 
     public void sendPost (NetworkCallable networkCallable, JSONObject obj){
