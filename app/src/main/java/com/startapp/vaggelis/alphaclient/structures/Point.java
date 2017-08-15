@@ -24,8 +24,8 @@ public class Point {
     }
 
     public Point(JSONArray data) throws JSONException{//TODO cetralize exception handling
-        this.lat = data.getDouble(0);
-        this.lon = data.getDouble(1);
+        this.lat = data.getDouble(1);
+        this.lon = data.getDouble(0);
     }
 
     public Point(ArrayList<Double> data){
@@ -40,7 +40,7 @@ public class Point {
 
     @Override
     public String toString(){
-        return String.format("[%f,%f]",lat,lon);
+        return String.format("[%f,%f]",lon,lat);
     }
 
 }

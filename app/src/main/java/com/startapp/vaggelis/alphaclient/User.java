@@ -178,7 +178,7 @@ public class User extends BaseActivity implements OnMapReadyCallback {
                 @Override
                 public void onClick(View v) {
 
-                    NetworkCallable<JSONArray> loginHandle = new NetworkCallable<JSONArray>() {
+                    NetworkCallable<JSONArray> refreshHandle = new NetworkCallable<JSONArray>() {
                         @Override
                         public void before() {
 
@@ -207,7 +207,7 @@ public class User extends BaseActivity implements OnMapReadyCallback {
                         }
                     };
                     try{
-                        api.getPosts(loginHandle);
+                        api.getPosts(refreshHandle);
                     }catch (JSONException e){
                         Log.d(toString(),"Exception in GetPosts");//TODO centralize exception handling
                     }
