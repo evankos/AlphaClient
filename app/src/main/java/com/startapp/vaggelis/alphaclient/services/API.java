@@ -39,9 +39,8 @@ public class API{
 
     void autoWireApi(){
         //TODO add sitemap and autowire with request
-        String base = String.format("%s://%s:%s/",context.getProperty("protocol"),
-                context.getProperty("server"),
-                context.getProperty("port"));
+        String base = String.format("%s://%s/",context.getProperty("protocol"),
+                context.getProperty("server"));
         ApiBase.put("auth",String.format("%s%s/", base, context.getProperty("api.auth")));
         ApiBase.put("users",String.format("%s%s/", base, context.getProperty("api.users")));
         ApiBase.put("groups",String.format("%s%s/", base, context.getProperty("api.groups")));
